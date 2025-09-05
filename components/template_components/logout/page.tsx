@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
+import { BiLogOut } from "react-icons/bi";
 
 export default function Logout() {
   const router = useRouter();
@@ -12,11 +13,13 @@ export default function Logout() {
   };
 
   return (
-      <button
+    <div className="border-t border-gray-100  flex justify-start items-center">
+       <button
         onClick={handleLogout}
-        className="px-6 py-2 bg-red-600 text-white rounded-lg"
+        className="py-2  text-sm text-red-500 flex justify-center items-center gap-3"
       >
-        Logout
+        <BiLogOut />Logout
       </button>
+    </div>
   );
 }

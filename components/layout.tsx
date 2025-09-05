@@ -11,6 +11,7 @@ import ThemeToggle from "./template_components/dark/ThemeToggle";
 export default function Layout({ children }: { children: React.ReactNode }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
+
     return (
         <div className="flex bg-white text-black dark:bg-gray-900 dark:text-white">
             {sidebarOpen && (
@@ -38,7 +39,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             >
                 <div
                     className={`p-4 font-bold  overflow-hidden
-                    ${sidebarOpen ? "text-xl text-left" : "text-lg border-b  text-center px-2"}`}
+                    ${sidebarOpen ? "text-xl text-left" : "text-lg border-b dark:border-gray-700 text-center px-2"}`}
                 >
                     {sidebarOpen ? "LOGO" : "L"}
                 </div>
@@ -83,7 +84,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                             className="absolute top-12 right-0 
                                                 bg-white dark:bg-gray-800 
                                                 shadow-[0_10px_30px_rgba(0,0,0,0.1)] 
-                                                p-4 rounded-lg"
+                                                p-4 rounded-lg border border-gray-200"
                                         >
                                             <Profile />
                                         </div>
@@ -94,7 +95,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                     </div>
                 </header>
 
-                <main className="flex-1 p-6 bg-gray-50 dark:bg-gray-800 min-h-screen">
+                <main className="flex-1 p-4 bg-gray-50 dark:bg-gray-800 min-h-screen">
                     {children}
                 </main>
                 <Footer />
