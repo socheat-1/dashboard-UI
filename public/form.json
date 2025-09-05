@@ -1,0 +1,24 @@
+{ 
+  "login": [
+    {
+      "name": "email",
+      "label": "Email",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": false,
+      "value": "",
+      "type": "input"
+    },
+    {
+      "name": "password",
+      "label": "Password",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": false,
+      "value": "",
+      "type": "password"
+    }
+  ]
+}
