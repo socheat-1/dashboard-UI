@@ -8,9 +8,7 @@ import formFields from "@/public/form.json";
 import { Textarea } from '@/components/ui/textarea';
 
 export default function ProfileUser() {
-
     const fields = formFields.profile;
-
     // Dynamically build initial state from form.json
     const initialState: Record<string, string> = {};
     fields.forEach((form: { name: string; value?: string }) => {
@@ -26,14 +24,14 @@ export default function ProfileUser() {
         }));
     };
 
-
     const [formData, setFormData] = useState<Record<string, string>>({
         name: 'John Doe',
         username: 'Mrr John007',
         email: 'john.doe@example.com',
         phone: '+1 234 567 8900',
         bio: 'Software developer with 5+ years of experience in React and Node.js.',
-        location: 'New York, USA'
+        location: 'New York, USA',
+        gender: 'Male',
     });
 
     const handleSubmit = () => {
@@ -91,22 +89,8 @@ export default function ProfileUser() {
                                                 onChange={handleChange}
                                             />
                                         </div>
-                                    ) : form.type === "textarea" ? (
-                                        <div key={`${form.name}-${index}`} className="">
-                                            <Label htmlFor={form.name}>{form.label}</Label>
-                                            <Textarea
-                                                placeholder={form.placeholder || form.label}
-                                                id={form.name}
-                                                name={form.name}
-                                                value={formData[form.name] ?? ""}
-                                                required={form.required}
-                                                disabled={form.disabled}
-                                                onChange={handleChange}
-                                            />
-                                        </div>
                                     ) : null)}
                             </div>
-
                             <button
                                 onClick={handleSubmit}
                                 className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition"

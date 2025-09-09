@@ -80,6 +80,17 @@
       "placeholder": "Enter location"
     },
     {
+      "name": "gender",
+      "label": "Gender",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter gender"
+    },
+    {
       "name": "bio",
       "label": "Bio",
       "change_state": false,
