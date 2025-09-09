@@ -1,4 +1,4 @@
-{ 
+{
   "login": [
     {
       "name": "email",
@@ -8,7 +8,8 @@
       "disabled": false,
       "required": false,
       "value": "",
-      "type": "input"
+      "type": "input",
+      "placeholder": "Enter email"
     },
     {
       "name": "password",
@@ -18,7 +19,76 @@
       "disabled": false,
       "required": false,
       "value": "",
-      "type": "password"
+      "type": "password",
+      "placeholder": "Enter password"
+    }
+  ],
+  "profile": [
+    {
+      "name": "name",
+      "label": "Name",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter name"
+    },
+    {
+      "name": "username",
+      "label": "User name",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter user name"
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter email"
+    },
+    {
+      "name": "phone",
+      "label": "Phone",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter phone"
+    },
+    {
+      "name": "location",
+      "label": "Location",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter location"
+    },
+    {
+      "name": "bio",
+      "label": "Bio",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "textarea",
+      "placeholder": "Enter bio"
     }
   ]
 }

@@ -52,16 +52,6 @@ export default function RevenueChart() {
 
     const chartData = rawData[view];
 
-    const getChartTitle = () => {
-        const titles = {
-            day: "📅 Daily Revenue vs Cost",
-            week: "📊 Weekly Revenue vs Cost",
-            month: "📈 Monthly Revenue vs Cost",
-            year: "🗓️ Annual Revenue vs Cost"
-        };
-        return titles[view];
-    };
-
     const formatTooltipValue = (value: number) => {
         if (currency === "KHR") {
             return `៛${(value * 4000).toLocaleString()}`;
@@ -73,7 +63,7 @@ export default function RevenueChart() {
     const CustomTooltip = ({ active, payload, label }: any) => {
         if (active && payload && payload.length) {
             return (
-                <div className="bg-white rounded-lg border border-gray-200 ">
+                <div className="bg-white p-2 rounded-lg border border-gray-200 ">
                     <p className="font-medium text-gray-800 mb-1">{`${label}`}</p>
                     {payload.map((entry: any, index: number) => (
                         <p key={index} style={{ color: entry.color }} className="text-sm">
@@ -124,10 +114,10 @@ export default function RevenueChart() {
             </div>
 
             <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-4">
-                <div className="bg-gray-50 p-4 rounded-2xl text-center flex flex-col items-center gap-2">
+                <div className="bg-gray-50 dark:bg-gray-900 border dark:border-gray-700 p-4 rounded-2xl text-center flex flex-col items-center gap-2">
                     <div className="flex items-center gap-2">
                         <AiOutlineDollarCircle className="text-blue-600 text-2xl" />
-                        <h3 className="text-lg font-semibold text-gray-700">Total Income</h3>
+                        <h3 className="text-lg font-semibold text-gray-700 dark:text-white">Total Income</h3>
                     </div>
                     <p className="text-2xl font-bold text-blue-600">
                         {currency === "KHR"
@@ -137,10 +127,10 @@ export default function RevenueChart() {
                     </p>
                 </div>
 
-                <div className="bg-gray-50  p-4 rounded-2xl text-center flex flex-col items-center gap-2">
+                <div className="bg-gray-50 dark:bg-gray-900 border dark:border-gray-700  p-4 rounded-2xl text-center flex flex-col items-center gap-2">
                     <div className="flex items-center gap-2">
                         <AiOutlineExclamationCircle className="text-red-600 text-2xl" />
-                        <h3 className="text-lg font-semibold text-gray-700">Total Expenses</h3>
+                        <h3 className="text-lg font-semibold text-gray-700 dark:text-white">Total Expenses</h3>
                     </div>
                     <p className="text-2xl font-bold text-red-600">
                         {currency === "KHR"
@@ -153,7 +143,7 @@ export default function RevenueChart() {
 
 
             {/* Chart */}
-            <div className="w-full bg-white rounded-xl  mt-5">
+            <div className="w-full bg-white dark:bg-gray-900 border dark:border-gray-700 rounded-xl  mt-5">
                 <ResponsiveContainer width="100%" height={500}>
                     <BarChart data={chartData} margin={{ top: 20, right: 30, left: 20, bottom: 5 }}>
                         <XAxis

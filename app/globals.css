@@ -14,6 +14,16 @@ body{
 .form {
     border-radius: 10px !important;
 }
+:root {
+  --app-font-family: Arial, sans-serif;
+  --app-font-size: 16px;
+}
+
+body {
+  font-family: var(--app-font-family);
+  font-size: var(--app-font-size);
+}
+
 
 @layer base {
   :root {
@@ -68,14 +78,5 @@ body{
         --chart-3: 30 80% 55%;
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
-    }
-}
-
-@layer base {
-  * {
-    @apply border-border;
-    }
-  body {
-    @apply bg-background text-foreground;
     }
 }

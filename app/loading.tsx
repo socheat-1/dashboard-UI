@@ -13,7 +13,7 @@ export default function GlobalLoader() {
     setLoading(true);
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 600);
+    }, 100);
     return () => clearTimeout(timer);
   }, [pathname]);
 

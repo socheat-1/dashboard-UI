@@ -1,28 +1,18 @@
 "use client";
-
 import { useState } from "react";
-import TextField from "@mui/material/TextField";
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
 import formFields from "@/public/form.json";
-import { FormControl, IconButton, InputAdornment, InputLabel, Link, OutlinedInput } from "@mui/material";
 import React from "react";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
-import { PiEyeClosedBold } from "react-icons/pi";
 import toast, { Toaster } from "react-hot-toast";
+import { Label } from "@/components/ui/label";
+import { Input } from "@/components/ui/input";
+import { HiEye, HiEyeOff } from "react-icons/hi";
 
 export default function LoginForm() {
   const router = useRouter();
   const [showPassword, setShowPassword] = React.useState(false);
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
 
-  const handleMouseDownPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
-
-  const handleMouseUpPassword = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.preventDefault();
-  };
 
   const fields = formFields.login;
   const initialState: { [key: string]: string } = {};
@@ -67,45 +57,42 @@ export default function LoginForm() {
               <h1 className="text-center text-[20px] font-medium">Sign in to your account</h1>
               {fields.map((form, index) =>
                 form.type === 'input' ? (
-                  <TextField
-                    className="form"
-                    key={`${form.name}-${index}`}
-                    variant="outlined"
-                    label={form.label}
-                    name={form.name}
-                    value={formData[form.name]}
-                    onChange={handleChange}
-                    required={form.required}
-                    disabled={form.disabled}
-                    fullWidth
-                  />
-                ) : form.type === 'password' ? (
-                  <FormControl key={`${form.name}-${index}`} fullWidth variant="outlined">
-                    <InputLabel htmlFor={`outlined-adornment-${form.name}-${index}`}>{form.label}</InputLabel>
-                    <OutlinedInput
-                      className="form"
+                  <div className="">
+                    <Label htmlFor={form.label}>Email</Label>
+                    <Input
+                      key={`${form.name}-${index}`}
+                      type="input"
+                      id="email"
+                      placeholder="Email"
                       name={form.name}
-                      type={showPassword ? "text" : "password"}
                       value={formData[form.name]}
-                      onChange={handleChange}
-                      endAdornment={
-                        <InputAdornment position="end">
-                          <IconButton
-                            aria-label={showPassword ? "hide password" : "show password"}
-                            onClick={handleClickShowPassword}
-                            onMouseDown={handleMouseDownPassword}
-                            onMouseUp={handleMouseUpPassword}
-                            edge="end"
-                          >
-                            {showPassword ? <VisibilityOff /> : <PiEyeClosedBold />}
-                          </IconButton>
-                        </InputAdornment>
-                      }
-                      label={form.label}
                       required={form.required}
                       disabled={form.disabled}
+                      onChange={handleChange}
                     />
-                  </FormControl>
+                  </div>
+                ) : form.type === 'password' ? (
+                  <div className=" relative">
+                    <Label htmlFor={`outlined-adornment-${form.name}-${index}`}>Password</Label>
+                    <div className="relative">
+                      <Input
+                        name={form.name}
+                        type={showPassword ? "text" : "password"}
+                        value={formData[form.name]}
+                        onChange={handleChange}
+                        id="password"
+                        placeholder="Enter your password"
+                        className="pr-10"
+                      />
+                      <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                      >
+                        {showPassword ? <HiEyeOff size={20} /> : <HiEye size={20} />}
+                      </button>
+                    </div>
+                  </div>
                 ) : null)}
 
               {error && <p className="text-red-500">{error}</p>}
@@ -120,3 +107,5 @@ export default function LoginForm() {
     </>
   );
 }
+
+

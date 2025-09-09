@@ -5,14 +5,31 @@ import { usePathname } from "next/navigation";
 import { LazyMotion, domAnimation, m, AnimatePresence } from "framer-motion";
 import { TbLayoutDashboardFilled } from "react-icons/tb";
 import { RiSettings5Fill } from "react-icons/ri";
-import { IoMdAnalytics, IoIosArrowDown } from "react-icons/io";
+import { IoIosArrowDown } from "react-icons/io";
 import { useState, useEffect } from "react";
-import { User } from "lucide-react";
 import { FaUser } from "react-icons/fa";
 
 interface ItemNavProps {
   sidebarOpen: boolean;
 }
+
+// Tooltip component
+const Tooltip = ({ children, text, show }: { children: React.ReactNode; text: string; show: boolean }) => {
+  if (!show) return <>{children}</>;
+  return (
+    <div className="relative group">
+      {children}
+      <div className="absolute left-full ml-2 top-1/2 transform -translate-y-1/2 opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-50 pointer-events-none">
+        <div className="bg-gray-900 dark:bg-gray-700 text-white text-sm px-2 py-1 rounded shadow-lg whitespace-nowrap">
+          {text}
+          <div className="absolute top-1/2 left-0 transform -translate-x-full -translate-y-1/2">
+            <div className="border-4 border-transparent border-r-gray-900 dark:border-r-gray-700"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export default function ItemNav({ sidebarOpen }: ItemNavProps) {
   const pathname = usePathname();
@@ -20,7 +37,14 @@ export default function ItemNav({ sidebarOpen }: ItemNavProps) {
 
   const navItems = [
     { label: "Dashboard", icon: <TbLayoutDashboardFilled />, href: "/dashboard" },
-    { label: "Settings", icon: <RiSettings5Fill />, href: "/setting" },
+    {
+      label: "Settings",
+      icon: <RiSettings5Fill />,
+      href: "/setting",
+      subItems: [
+        { label: "Font Family", href: "/setting/fontSetting" },
+      ],
+    },
     {
       label: "User",
       icon: <FaUser />,
@@ -54,7 +78,7 @@ export default function ItemNav({ sidebarOpen }: ItemNavProps) {
   };
 
   return (
-    <div className="h-screen">
+    <div  className="h-screen">
       <LazyMotion features={domAnimation}>
         <nav className={`flex flex-col space-y-1 ${sidebarOpen ? "p-2" : "p-2"}`}>
           {navItems.map((item, index) => {
@@ -76,98 +100,102 @@ export default function ItemNav({ sidebarOpen }: ItemNavProps) {
                   transition={{ 
                     duration: 0.4, 
                     delay: index * 0.1,
-                    ease: [0.25, 0.46, 0.45, 0.94] // Custom easing for smoother animation
+                    ease: [0.25, 0.46, 0.45, 0.94]
                   }}
                 >
                   {hasSubItems ? (
-                    <m.button
-                      onClick={() => toggleDropdown(item.label)}
-                      className={`flex items-center justify-between w-full rounded-sm
-                        ${sidebarOpen ? "py-3 px-4" : "justify-center px-3 py-3"} 
-                        ${isActive
-                          ? "bg-[#ecf3ff] dark:bg-[#18315c] border-l-4 border-[#465FFF] dark:border-gray-200 font-medium text-[#465FFF] dark:text-white shadow-sm"
-                          : "hover:bg-[#ecf3ff] dark:hover:bg-gray-700 text-[#344054] dark:text-white "
-                        }`}
-                      title={!sidebarOpen ? item.label : undefined}
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="flex items-center gap-3">
-                        <m.span 
-                          className="text-[20px] flex-shrink-0"
-                        >
-                          {item.icon}
-                        </m.span>
-                        <AnimatePresence mode="wait">
-                          {sidebarOpen && (
-                            <m.span 
-                              className="whitespace-nowrap font-medium"
-                              initial={{ opacity: 0, width: 0 }}
-                              animate={{ opacity: 1, width: "auto" }}
-                              exit={{ opacity: 0, width: 0 }}
-                              transition={{ duration: 0.3, ease: "easeInOut" }}
-                            >
-                              {item.label}
-                            </m.span>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                      <AnimatePresence>
-                        {sidebarOpen && (
-                          <m.span
-                            initial={{ opacity: 0, rotate: 0 }}
-                            animate={{ 
-                              opacity: 1, 
-                              rotate: isDropdownOpen ? 180 : 0 
-                            }}
-                            exit={{ opacity: 0 }}
-                            transition={{ 
-                              duration: 0.3,
-                              ease: [0.25, 0.46, 0.45, 0.94]
-                            }}
-                            className="text-sm ml-2"
-                          >
-                            <IoIosArrowDown />
-                          </m.span>
-                        )}
-                      </AnimatePresence>
-                    </m.button>
-                  ) : (
-                    <m.div
-                      whileHover={{ scale: 1.02 }}
-                      whileTap={{ scale: 0.98 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <Link
-                        href={item.href}
-                        className={`flex items-center gap-3 transition-all duration-300 ease-in-out rounded-sm
+                    <Tooltip text={item.label} show={!sidebarOpen}>
+                      <m.button
+                        onClick={() => toggleDropdown(item.label)}
+                        className={`flex items-center justify-between w-full rounded-sm
                           ${sidebarOpen ? "py-3 px-4" : "justify-center px-3 py-3"} 
                           ${isActive
                             ? "bg-[#ecf3ff] dark:bg-[#18315c] border-l-4 border-[#465FFF] dark:border-gray-200 font-medium text-[#465FFF] dark:text-white shadow-sm"
                             : "hover:bg-[#ecf3ff] dark:hover:bg-gray-700 text-[#344054] dark:text-white "
                           }`}
                         title={!sidebarOpen ? item.label : undefined}
+                        whileHover={{ scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        transition={{ duration: 0.2 }}
                       >
-                        <m.span 
-                          className="text-[20px] flex-shrink-0"
-                        >
-                          {item.icon}
-                        </m.span>
-                        <AnimatePresence mode="wait">
+                        <div className="flex items-center gap-3">
+                          <m.span 
+                            className="text-[20px] flex-shrink-0"
+                          >
+                            {item.icon}
+                          </m.span>
+                          <AnimatePresence mode="wait">
+                            {sidebarOpen && (
+                              <m.span 
+                                className="whitespace-nowrap font-medium"
+                                initial={{ opacity: 0, width: 0 }}
+                                animate={{ opacity: 1, width: "auto" }}
+                                exit={{ opacity: 0, width: 0 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                              >
+                                {item.label}
+                              </m.span>
+                            )}
+                          </AnimatePresence>
+                        </div>
+                        <AnimatePresence>
                           {sidebarOpen && (
-                            <m.span 
-                              className="whitespace-nowrap font-medium"
-                              initial={{ opacity: 0, width: 0 }}
-                              animate={{ opacity: 1, width: "auto" }}
-                              exit={{ opacity: 0, width: 0 }}
-                              transition={{ duration: 0.3, ease: "easeInOut" }}
+                            <m.span
+                              initial={{ opacity: 0, rotate: 0 }}
+                              animate={{ 
+                                opacity: 1, 
+                                rotate: isDropdownOpen ? 180 : 0 
+                              }}
+                              exit={{ opacity: 0 }}
+                              transition={{ 
+                                duration: 0.3,
+                                ease: [0.25, 0.46, 0.45, 0.94]
+                              }}
+                              className="text-sm ml-2"
                             >
-                              {item.label}
+                              <IoIosArrowDown />
                             </m.span>
                           )}
                         </AnimatePresence>
-                      </Link>
+                      </m.button>
+                    </Tooltip>
+                  ) : (
+                    <m.div
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Tooltip text={item.label} show={!sidebarOpen}>
+                        <Link
+                          href={item.href}
+                          className={`flex items-center gap-3 transition-all duration-300 ease-in-out rounded-sm
+                            ${sidebarOpen ? "py-3 px-4" : "justify-center px-3 py-3"} 
+                            ${isActive
+                              ? "bg-[#ecf3ff] dark:bg-[#18315c] border-l-4 border-[#465FFF] dark:border-gray-200 font-medium text-[#465FFF] dark:text-white shadow-sm"
+                              : "hover:bg-[#ecf3ff] dark:hover:bg-gray-700 text-[#344054] dark:text-white "
+                            }`}
+                          title={!sidebarOpen ? item.label : undefined}
+                        >
+                          <m.span 
+                            className="text-[20px] flex-shrink-0"
+                          >
+                            {item.icon}
+                          </m.span>
+                          <AnimatePresence mode="wait">
+                            {sidebarOpen && (
+                              <m.span 
+                                className="whitespace-nowrap font-medium"
+                                initial={{ opacity: 0, width: 0 }}
+                                animate={{ opacity: 1, width: "auto" }}
+                                exit={{ opacity: 0, width: 0 }}
+                                transition={{ duration: 0.3, ease: "easeInOut" }}
+                              >
+                                {item.label}
+                              </m.span>
+                            )}
+                          </AnimatePresence>
+                        </Link>
+                      </Tooltip>
                     </m.div>
                   )}
                 </m.div>
@@ -187,7 +215,7 @@ export default function ItemNav({ sidebarOpen }: ItemNavProps) {
                         }}
                         className="overflow-hidden"
                       >
-                        <div className="ml-8 pl-4 border-l-2 border-gray-200 dark:border-gray-600 space-y-1 py-2 mt-1">
+                        <div className="ml-3 pl-3 border-l-2 border-gray-200 dark:border-gray-600 space-y-1 py-2 mt-1">
                           {item.subItems!.map((subItem, subIndex) => {
                             const isSubItemActive =
                               pathname === subItem.href ||

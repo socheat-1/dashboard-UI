@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import ItemNav from "./template_components/item_nav";
 import { IconButton } from "@mui/material";
@@ -11,7 +11,19 @@ import ThemeToggle from "./template_components/dark/ThemeToggle";
 export default function Layout({ children }: { children: React.ReactNode }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
-
+    useEffect(() => {
+        if (window.innerWidth < 768) {
+            setSidebarOpen(false);
+        } else {
+            setSidebarOpen(true);
+        }
+        const handleResize = () => {
+            if (window.innerWidth < 768) setSidebarOpen(false);
+            else setSidebarOpen(true);
+        };
+        window.addEventListener("resize", handleResize);
+        return () => window.removeEventListener("resize", handleResize);
+    }, []);
     return (
         <div className="flex bg-white text-black dark:bg-gray-900 dark:text-white">
             {sidebarOpen && (
@@ -82,11 +94,19 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     >
                                         <div
                                             className="absolute top-12 right-0 
-                                                bg-white dark:bg-gray-800 
-                                                shadow-[0_10px_30px_rgba(0,0,0,0.1)] 
-                                                p-4 rounded-lg border border-gray-200"
+                                            bg-white dark:bg-gray-800 
+                                            shadow-[0_10px_30px_rgba(0,0,0,0.1)] 
+                                            p-4 rounded-lg border border-gray-200 dark:border-gray-700"
                                         >
                                             <Profile />
+                                            <div className="absolute top-0 right-0 bottom-[121px]  transform -translate-x-1/2 -translate-y-1/2">
+                                                <div
+                                                    className="w-0 h-0 
+                                                    border-l-8 border-r-8 border-b-8
+                                                    border-l-transparent border-r-transparent
+                                                    border-b-white dark:border-b-gray-700"
+                                                ></div>
+                                            </div>
                                         </div>
                                     </m.div>
                                 </LazyMotion>
@@ -100,7 +120,6 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                 </main>
                 <Footer />
             </div>
-
         </div>
     );
 }

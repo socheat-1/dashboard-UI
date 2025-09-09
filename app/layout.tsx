@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import GlobalLoader from "./loading";
+import ClientRoot from "./client-root";
 
 export const metadata: Metadata = {
   title: "Mini system",
@@ -30,10 +31,12 @@ export default function RootLayout({
       <body>
         
         <div className="bg-white text-black dark:bg-gray-900 dark:text-white">
+          <ClientRoot >
           <ThemeProvider attribute="class" defaultTheme="light">
              <GlobalLoader />
             {children}
           </ThemeProvider>
+          </ClientRoot>
         </div>
       </body>
 
