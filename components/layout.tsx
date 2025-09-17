@@ -7,10 +7,13 @@ import Profile from "./template_components/profile_drondown/profile";
 import { domAnimation, LazyMotion, m } from "framer-motion";
 import Footer from "./template_components/footer/footer";
 import ThemeToggle from "./template_components/dark/ThemeToggle";
+import Translate from "./template_components/Translate/translate";
+import { useUserStore } from "@/store/userStore";
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
     const [menuOpen, setMenuOpen] = useState(false);
+    const { user, fetchUser } = useUserStore();
     useEffect(() => {
         if (window.innerWidth < 768) {
             setSidebarOpen(false);
@@ -24,6 +27,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
     }, []);
+
+      useEffect(() => {
+   
+  }, [fetchUser]);
     return (
         <div className="flex bg-white text-black dark:bg-gray-900 dark:text-white">
             {sidebarOpen && (
@@ -71,6 +78,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         <HiMenuAlt1 className="dark:text-white" size={22} />
                     </IconButton>
                     <div className="flex items-center gap-3">
+                        <Translate />
                         <ThemeToggle />
                         <div className="relative">
                             <div className="flex justify-center items-center">
@@ -79,7 +87,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     className="focus:outline-none"
                                 >
                                     <img
-                                        src="https://static.vecteezy.com/system/resources/thumbnails/027/951/137/small_2x/stylish-spectacles-guy-3d-avatar-character-illustrations-png.png"
+                                        src={user?.image || "https://digitalhealthskills.com/wp-content/uploads/2022/11/3da39-no-user-image-icon-27.png"}
                                         alt="User avatar"
                                         className="w-10 h-10 p-1 rounded-full object-cover border-2 border-gray-200 dark:border-gray-700"
                                     />
@@ -99,14 +107,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                             p-4 rounded-lg border border-gray-200 dark:border-gray-700"
                                         >
                                             <Profile />
-                                            <div className="absolute top-0 right-0 bottom-[121px]  transform -translate-x-1/2 -translate-y-1/2">
-                                                <div
-                                                    className="w-0 h-0 
-                                                    border-l-8 border-r-8 border-b-8
-                                                    border-l-transparent border-r-transparent
-                                                    border-b-white dark:border-b-gray-700"
-                                                ></div>
-                                            </div>
+                                            
                                         </div>
                                     </m.div>
                                 </LazyMotion>

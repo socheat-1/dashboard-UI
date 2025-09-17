@@ -8,6 +8,8 @@ import { RiSettings5Fill } from "react-icons/ri";
 import { IoIosArrowDown } from "react-icons/io";
 import { useState, useEffect } from "react";
 import { FaUser } from "react-icons/fa";
+import { TbReportSearch } from "react-icons/tb";
+import { useTranslation } from "react-i18next";
 
 interface ItemNavProps {
   sidebarOpen: boolean;
@@ -32,26 +34,38 @@ const Tooltip = ({ children, text, show }: { children: React.ReactNode; text: st
 };
 
 export default function ItemNav({ sidebarOpen }: ItemNavProps) {
+  const { t } = useTranslation("common");
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   const navItems = [
-    { label: "Dashboard", icon: <TbLayoutDashboardFilled />, href: "/dashboard" },
+    // { label: "Overview", icon: <TbLayoutDashboardFilled />, href: "/dashboard" },
     {
-      label: "Settings",
-      icon: <RiSettings5Fill />,
-      href: "/setting",
+      label: t('overview'),
+      icon: <TbReportSearch />,
+      href: "/overview",
       subItems: [
-        { label: "Font Family", href: "/setting/fontSetting" },
+        { label: t('dashboard'), href: "/overview/dashboard" },
+        { label: t('income'), href: "/overview/income" },
+        { label: t('expense'), href: "/overview/expense" },
       ],
     },
     {
-      label: "User",
+      label: t('settings'),
+      icon: <RiSettings5Fill />,
+      href: "/setting",
+      subItems: [
+        { label: t('font_family'), href: "/setting/fontSetting" },
+      ],
+    },
+    {
+      label: t('user'),
       icon: <FaUser />,
       href: "/user",
       subItems: [
-        { label: "Profile", href: "/user/profile" },
-      ],
+        { label: t('profile'), href: "/user/profile" },
+        { label: t('listing_users'), href: "/user/listting_user" },
+      ]
     },
   ];
 

@@ -1,0 +1,19 @@
+{
+  "profile": "Profile",
+  "dashboard": "Dashboard",
+  "user": "User",
+  "listing_users":"Listing Users",
+  "income_table": "Income Table",
+  "expense_table": "Expense Table",
+  "income": "Income",
+  "expense": "Expense",
+  "amount": "Amount",
+  "description": "Description",
+  "in_day": "In day",
+  "in_month": "In month",
+  "in_year": "In year",
+  "action": "Action",
+  "overview": "Overview",
+  "settings": "Settings",
+  "font_family": "Font Family"
+}

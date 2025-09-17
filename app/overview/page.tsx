@@ -1,8 +1,8 @@
-import Grab from "@/components/template_components/grab/grab";
+import Grab from "@/components/template_components/dashboard/grab/grab";
 import Layout from "../../components/layout";
 import { SidebarProvider } from "../context/SidebarContext";
 
-export default function DashboardPage() {
+export default function OverviewPage() {
   return (
     <SidebarProvider>
       <Layout>

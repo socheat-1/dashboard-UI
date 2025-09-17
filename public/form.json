@@ -23,6 +23,7 @@
       "placeholder": "Enter password"
     }
   ],
+  
   "profile": [
     {
       "name": "name",
@@ -37,7 +38,7 @@
     },
     {
       "name": "username",
-      "label": "User name",
+      "label": "Username",
       "change_state": false,
       "info": false,
       "disabled": false,
@@ -91,8 +92,8 @@
       "placeholder": "Enter gender"
     },
     {
-      "name": "bio",
-      "label": "Bio",
+      "name": "description",
+      "label": "Description",
       "change_state": false,
       "info": false,
       "disabled": false,
@@ -100,6 +101,65 @@
       "value": "",
       "type": "textarea",
       "placeholder": "Enter bio"
+    }
+  ],
+  "income": [
+    {
+      "name": "amount",
+      "label": "Amount $",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter Amount",
+      "pattern": "^[0-9 $៛]{0,20}$"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter Des",
+      "pattern":"^[A-Za-z0-9 #$%&@?*_]{0,40}$"
+    },
+    {
+      "name": "in_day",
+      "label": "In days",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "days",
+      "placeholder": "Select Day"
+    },
+    {
+      "name": "in_month",
+      "label": "In months",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "months",
+      "placeholder": "Select month"
+    },
+    {
+      "name": "in_year",
+      "label": "In years",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "years",
+      "placeholder": "Select years"
     }
   ]
 }

@@ -3,6 +3,8 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import GlobalLoader from "./loading";
 import ClientRoot from "./client-root";
+import I18nProvider from "./providers/I18nProvider";
+
 
 export const metadata: Metadata = {
   title: "Mini system",
@@ -12,6 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode; }>) {
+  
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -29,13 +32,15 @@ export default function RootLayout({
       </head>
 
       <body>
-        
-        <div className="bg-white text-black dark:bg-gray-900 dark:text-white">
+
+        <div className="bg-white text-black dark:bg-gray-900 dark:text-white font-siemreap">
           <ClientRoot >
-          <ThemeProvider attribute="class" defaultTheme="light">
-             <GlobalLoader />
-            {children}
-          </ThemeProvider>
+            <ThemeProvider attribute="class" defaultTheme="light">
+              <I18nProvider>
+                <GlobalLoader />
+                {children}
+              </I18nProvider>
+            </ThemeProvider>
           </ClientRoot>
         </div>
       </body>

@@ -1,7 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
+html, body {
+  font-family: 'Siemreap', sans-serif;
+}
 body{
     font-family: "Siemreap", sans-serif;
 }
@@ -10,6 +12,9 @@ body{
 }
 .form .MuiOutlinedInput-root{
     border-radius: 10px !important;
+}
+.font-siemreap {
+  font-family: 'Siemreap', sans-serif;
 }
 .form {
     border-radius: 10px !important;

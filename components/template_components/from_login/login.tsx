@@ -18,7 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import Link from "next/link";
+import Alert from "@/share/alert/alert";
 
 export function LoginForm() {
   const router = useRouter();
@@ -36,22 +36,34 @@ export function LoginForm() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { email, password } = formData;
-    if (email === "1@gmail.com" && password === "1") {
-      Cookies.set("auth", "true", { expires: 1 });
-      toast.success("Login Successfully!");
-      setTimeout(() => {
-        router.push("/dashboard");
-      }, 1000);
-    } else {
-      toast.error("Invalid email or password");
+
+    try {
+      const res = await fetch("/api/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (res.ok) {
+        Cookies.set("auth", data.token, { expires: 1 });
+        toast.success("Login successful!");
+        setTimeout(() => router.push("/overview/dashboard"), 1000);
+      } else {
+        toast.error(data.message || "Invalid email or password");
+      }
+    } catch (err) {
+      toast.error("Server error, try again");
     }
   };
 
+
   return (
     <div className="h-screen flex justify-center items-center bg-gray-50">
+      <Alert />
       <Card className="w-full max-w-sm">
         <CardHeader>
           <CardTitle>Login to your account</CardTitle>
@@ -59,9 +71,7 @@ export function LoginForm() {
             Enter your email below to login to your account
           </CardDescription>
           <div>
-            <Link href="/signup" className="text-blue-500 hover:underline">
-              Sign Up
-            </Link>
+            <Button variant="link">Sign Up</Button>
           </div>
         </CardHeader>
         <CardContent>
@@ -120,3 +130,5 @@ export function LoginForm() {
     </div>
   );
 }
+
+

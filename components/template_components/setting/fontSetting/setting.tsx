@@ -2,10 +2,13 @@
 
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
 import NavHeader from '@/share/header_route/nav_header';
+import { t } from 'i18next';
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 export default function Settings() {
+  const { t } = useTranslation("common");
   const [selectedFont, setSelectedFont] = useState('Arial, sans-serif');
   const [fontSize, setFontSize] = useState(16);
   const [showAnimation, setShowAnimation] = useState(false);
@@ -86,10 +89,10 @@ export default function Settings() {
         reverseOrder={false}
       />
       <NavHeader
-        title="Font Settings"
-        home="Dashboard"
-        route="Settings"
-        label="Font Family"
+        title={t('font_family')}
+        home={t('dashboard')}
+        route={t('settings')}
+        label={t('font_family')}
         href="/setting/fontSetting"
       />
 
