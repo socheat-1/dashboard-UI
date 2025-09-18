@@ -14,7 +14,7 @@ import { useTranslation } from "react-i18next";
 import NavHeaderVII from "@/share/header_route/nav_headerVII";
 
 export default function Income() {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("translation");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const { incomeData, fetchIncome, removeIncome } = useIncomeStore();
   const [currentPage, setCurrentPage] = useState(1);
@@ -77,6 +77,7 @@ export default function Income() {
     setSelectedIncome(null);
   };
 
+  
   return (
     <div>
       <Toaster

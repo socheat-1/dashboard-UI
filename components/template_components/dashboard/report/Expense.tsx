@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 
 export default function Expense() {
     const { expenseData, fetchExpense } = useExpenseStore();
-    const { t } = useTranslation("common");
+    const { t } = useTranslation("translation");
 
     useEffect(() => {
         fetchExpense();

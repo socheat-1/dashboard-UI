@@ -10,8 +10,7 @@ import { useUserStore } from '@/store/userStore';
 import { useTranslation } from 'react-i18next';
 
 export default function ProfileUser() {
-    const { t } = useTranslation("common");
-    
+    const { t } = useTranslation("translation");
     const { user, fetchUser } = useUserStore();
     const fields = formFields.profile;
     const initialState: Record<string, string> = {};
@@ -99,9 +98,11 @@ export default function ProfileUser() {
                                     className="w-32 h-32 p-1 rounded-full object-cover border-4 border-gray-300 dark:border-gray-600"
                                 />
                             </div>
-                            <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-300 mb-2">{formData.name}</h2>
-                            <h2 className="text-lg font-normal text-gray-700 dark:text-gray-300 mb-2">{formData.location}</h2>
-                            <p className="text-gray-600 dark:text-gray-300">Update your information</p>
+                            <div className='mt-5'>
+                                <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-300 mb-2">{user?.name}</h2>
+                                <h2 className="text-lg font-normal text-gray-700 dark:text-gray-300 mb-2">{user?.location}</h2>
+                                <p className="text-gray-600 dark:text-gray-300">Update your information</p>
+                            </div>
                         </div>
                     </div>
 
@@ -112,11 +113,11 @@ export default function ProfileUser() {
                                 {fields.map((form, index) =>
                                     form.type === "input" ? (
                                         <div key={`${form.name}-${index}`}>
-                                            <Label htmlFor={form.name}>{form.label}</Label>
+                                            <Label htmlFor={form.name}>{t(form.label)}</Label>
                                             <Input
                                                 type="text"
                                                 id={form.name}
-                                                placeholder={form.placeholder || form.label}
+                                                placeholder={t(form.placeholder || form.label)}
                                                 name={form.name}
                                                 value={formData[form.name] ?? ""}
                                                 required={form.required}

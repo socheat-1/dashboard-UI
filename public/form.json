@@ -27,14 +27,14 @@
   "profile": [
     {
       "name": "name",
-      "label": "Name",
+      "label": "name_label",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter name"
+      "placeholder": "name_placeholder"
     },
     {
       "name": "username",
@@ -103,6 +103,7 @@
       "placeholder": "Enter bio"
     }
   ],
+
   "income": [
     {
       "name": "amount",
@@ -160,6 +161,85 @@
       "value": "",
       "type": "years",
       "placeholder": "Select years"
+    }
+  ],
+  "createUser": [
+    {
+      "name": "name",
+      "label": "Name",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter name"
+    },
+    {
+      "name": "username",
+      "label": "User Name",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter user name"
+    },
+    {
+      "name": "email",
+      "label": "Email",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter email"
+    },
+    {
+      "name": "phone",
+      "label": "Phone",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter phone"
+    },
+    {
+      "name": "location",
+      "label": "Location",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter location"
+    },
+    {
+      "name": "gender",
+      "label": "Gender",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "Enter gender"
+    },
+    {
+      "name": "description",
+      "label": "Description",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "textarea",
+      "placeholder": "Enter bio"
     }
   ]
 }

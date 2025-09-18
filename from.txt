@@ -1,0 +1,80 @@
+"use client";
+
+import { LazyMotion, domAnimation, m } from "framer-motion";
+
+export default function EditProfileModal({ onClose }: { onClose: () => void }) {
+  return (
+    <LazyMotion features={domAnimation}>
+      <m.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+        className="fixed inset-0 flex items-center justify-center bg-black/40 z-50"
+      >
+        {/* Modal container */}
+        <div
+          className="bg-white dark:bg-gray-800 
+          shadow-[0_10px_30px_rgba(0,0,0,0.1)] 
+          rounded-xl w-full max-w-md mx-4 p-6 relative"
+        >
+          {/* Close button */}
+          <button
+            onClick={onClose}
+            className="absolute top-4 right-4 text-gray-500 hover:text-black dark:hover:text-white"
+          >
+            ✕
+          </button>
+
+          {/* Title */}
+          <h2 className="text-lg font-semibold">Edit profile</h2>
+          <p className="text-sm text-gray-500 mb-6">
+            Make changes to your profile here. Click save when you're done.
+          </p>
+
+          {/* Form */}
+          <form className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">Name</label>
+              <input
+                type="text"
+                defaultValue="Pedro Duarte"
+                className="w-full border rounded-md px-3 py-2 text-sm 
+                focus:ring-2 focus:ring-black dark:focus:ring-white 
+                bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1">Username</label>
+              <input
+                type="text"
+                defaultValue="@peduarte"
+                className="w-full border rounded-md px-3 py-2 text-sm 
+                focus:ring-2 focus:ring-black dark:focus:ring-white 
+                bg-white dark:bg-gray-700 border-gray-300 dark:border-gray-600"
+              />
+            </div>
+
+            {/* Buttons */}
+            <div className="flex justify-end gap-3 pt-4">
+              <button
+                type="button"
+                onClick={onClose}
+                className="px-4 py-2 rounded-md border border-gray-300 
+                dark:border-gray-600 text-sm"
+              >
+                Close
+              </button>
+              <button
+                type="submit"
+                className="px-4 py-2 rounded-md bg-black text-white text-sm"
+              >
+                Save changes
+              </button>
+            </div>
+          </form>
+        </div>
+      </m.div>
+    </LazyMotion>
+  );
+}

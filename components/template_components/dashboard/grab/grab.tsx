@@ -29,7 +29,7 @@ export default function RevenueChart() {
         view: "month",
         year: ""
     });
-    const { t } = useTranslation("common");
+    const { t } = useTranslation("translation");
     const [drillDownHistory, setDrillDownHistory] = useState<DrillDownState[]>([]);
     const [currency, setCurrency] = useState<"USD" | "KHR">("USD");
     const [chartData, setChartData] = useState<any[]>([]);

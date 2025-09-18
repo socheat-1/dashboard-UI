@@ -8,7 +8,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
 
 export default function Settings() {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("translation");
   const [selectedFont, setSelectedFont] = useState('Arial, sans-serif');
   const [fontSize, setFontSize] = useState(16);
   const [showAnimation, setShowAnimation] = useState(false);

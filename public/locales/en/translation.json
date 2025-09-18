@@ -15,5 +15,7 @@
   "action": "Action",
   "overview": "Overview",
   "settings": "Settings",
-  "font_family": "Font Family"
+  "font_family": "Font Family",
+  "name_label": "Name",
+  "name_placeholder":" Enter name"
 }

@@ -15,6 +15,7 @@
   "action": "សកម្មភាព",
   "overview": "ទិដ្ឋភាពទូទៅ",
   "settings": "ការកំណត់",
-  "font_family": "កំណត់ពុម្ពអក្សរ"
-  
+  "font_family": "កំណត់ពុម្ពអក្សរ",
+  "name_label": "ឈ្មោះ",
+  "name_placeholder":"បញ្ចូលឈ្មោះ"
 }

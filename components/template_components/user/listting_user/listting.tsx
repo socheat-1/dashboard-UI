@@ -13,6 +13,7 @@ import NavHeader from "@/share/header_route/nav_header";
 import { FiPlus } from "react-icons/fi";
 import { CreateUser } from "../create/c_user";
 import { useTranslation } from "react-i18next";
+import { useUserStore } from "@/store/userStore";
 type User = {
     id: number;
     name: string;
@@ -25,7 +26,8 @@ type User = {
 };
 
 export default function ListingPage() {
-    const { t } = useTranslation("common");
+    const { t } = useTranslation("translation");
+    const { user, fetchUser } = useUserStore();
     const [isOpen, setIsOpen] = useState(false);
     const [users, setUsers] = useState<User[]>([]);
     useEffect(() => {
@@ -43,6 +45,9 @@ export default function ListingPage() {
             })
             .catch((err) => console.error("Error fetching users:", err));
     }, []);
+
+    useEffect(() => {
+    }, [fetchUser]);
 
     const cols = [
         { id: 1, name: "" },
@@ -65,8 +70,8 @@ export default function ListingPage() {
                     label={t('listing_users')}
                     href="/user/listing_user"
                 />
-                <div   onClick={() => setIsOpen(true)}  className="bg-blue-500 hover:bg-blue-600 p-2 rounded-full">
-                    <FiPlus  className="text-white"/>
+                <div onClick={() => setIsOpen(true)} className="bg-blue-500 hover:bg-blue-600 p-2 rounded-full">
+                    <FiPlus className="text-white" />
                 </div>
             </div>
             <div className="overflow-x-auto bg-white p-4 dark:border-gray-700 dark:gray-700 dark:bg-gray-900 rounded-2xl mt-5 border border-gray-200">
@@ -103,7 +108,7 @@ export default function ListingPage() {
                 </Table>
             </div>
             {isOpen && (
-                <CreateUser  isOpen={isOpen} onClose={() => setIsOpen(false)} />
+                <CreateUser isOpen={isOpen} onClose={() => setIsOpen(false)} />
             )}
         </>
     );

@@ -3,16 +3,16 @@ import { useEffect, useState } from "react";
 import { HiMenuAlt1 } from "react-icons/hi";
 import ItemNav from "./template_components/item_nav";
 import { IconButton } from "@mui/material";
-import Profile from "./template_components/profile_drondown/profile";
-import { domAnimation, LazyMotion, m } from "framer-motion";
 import Footer from "./template_components/footer/footer";
 import ThemeToggle from "./template_components/dark/ThemeToggle";
 import Translate from "./template_components/Translate/translate";
 import { useUserStore } from "@/store/userStore";
+import ProfileModal from "./template_components/profile_sibar/profile";
+
 
 export default function Layout({ children }: { children: React.ReactNode }) {
     const [sidebarOpen, setSidebarOpen] = useState(true);
-    const [menuOpen, setMenuOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
     const { user, fetchUser } = useUserStore();
     useEffect(() => {
         if (window.innerWidth < 768) {
@@ -28,9 +28,23 @@ export default function Layout({ children }: { children: React.ReactNode }) {
         return () => window.removeEventListener("resize", handleResize);
     }, []);
 
-      useEffect(() => {
-   
-  }, [fetchUser]);
+    useEffect(() => {
+
+    }, [fetchUser]);
+
+    useEffect(() => {
+        if (isOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isOpen]);
+
+
+    const handleOpen = () => setIsOpen(true);
     return (
         <div className="flex bg-white text-black dark:bg-gray-900 dark:text-white">
             {sidebarOpen && (
@@ -83,7 +97,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                         <div className="relative">
                             <div className="flex justify-center items-center">
                                 <button
-                                    onClick={() => setMenuOpen(!menuOpen)}
+                                    onClick={handleOpen}
                                     className="focus:outline-none"
                                 >
                                     <img
@@ -93,25 +107,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
                                     />
                                 </button>
                             </div>
-                            {menuOpen && (
-                                <LazyMotion features={domAnimation}>
-                                    <m.div
-                                        initial={{ opacity: 0 }}
-                                        animate={{ opacity: 1 }}
-                                        transition={{ duration: 0.3 }}
-                                    >
-                                        <div
-                                            className="absolute top-12 right-0 
-                                            bg-white dark:bg-gray-800 
-                                            shadow-[0_10px_30px_rgba(0,0,0,0.1)] 
-                                            p-4 rounded-lg border border-gray-200 dark:border-gray-700"
-                                        >
-                                            <Profile />
-                                            
-                                        </div>
-                                    </m.div>
-                                </LazyMotion>
-                            )}
+                            <ProfileModal
+                                isOpen={isOpen}       // pass state
+                                onClose={() => setIsOpen(false)} // pass close handler
+                            />
                         </div>
                     </div>
                 </header>

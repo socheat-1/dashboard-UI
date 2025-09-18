@@ -13,12 +13,12 @@ export default function Logout() {
   };
 
   return (
-    <div className="border-t border-gray-100  flex justify-start items-center">
+    <div className="bg-red-100 rounded-xl flex justify-center items-center">
        <button
         onClick={handleLogout}
-        className="py-2  text-sm text-red-500 flex justify-center items-center gap-3"
+        className="py-3 text-red-500 font-bold text-[16px]"
       >
-        <BiLogOut />Logout
+       Logout
       </button>
     </div>
   );

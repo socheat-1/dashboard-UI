@@ -15,7 +15,7 @@ import { AnimatePresence, motion } from "framer-motion";
 interface UpdateIncomeProps {
     isModalOpen: boolean;
     onClose: () => void;
-    income: Record<string, string>; // pass existing income data here
+    income: Record<string, string>;
 }
 
 export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateIncomeProps) {
@@ -51,7 +51,7 @@ export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateInc
                 ...formData,
                 id: income.id
             };
-            
+
             await updateIncome(updateData);
             toast.success("Income updated successfully!");
             onClose();
@@ -63,12 +63,10 @@ export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateInc
         }
     };
 
-
     useEffect(() => {
         fetchDatetime();
     }, []);
 
-    // Reset form data when income prop changes
     useEffect(() => {
         const newInitialState: Record<string, string> = {};
         fields.forEach((form: { name: string; value?: string }) => {
@@ -78,6 +76,18 @@ export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateInc
     }, [income, fields]);
 
     if (!isModalOpen) return null;
+
+
+    useEffect(() => {
+        if (isModalOpen) {
+            document.body.style.overflow = "hidden";
+        } else {
+            document.body.style.overflow = "auto";
+        }
+        return () => {
+            document.body.style.overflow = "auto";
+        };
+    }, [isModalOpen]);
 
     return (
         <AnimatePresence>

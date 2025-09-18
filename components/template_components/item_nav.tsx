@@ -34,7 +34,7 @@ const Tooltip = ({ children, text, show }: { children: React.ReactNode; text: st
 };
 
 export default function ItemNav({ sidebarOpen }: ItemNavProps) {
-  const { t } = useTranslation("common");
+  const { t } = useTranslation("translation");
   const pathname = usePathname();
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 

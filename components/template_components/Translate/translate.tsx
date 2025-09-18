@@ -17,7 +17,7 @@ import Cambodia from "@/public/img/flag/cambodia.png";
 import english from "@/public/img/flag/english.png"; 
 
 export default function Translate() {
-  const { i18n } = useTranslation("common");
+  const { i18n } = useTranslation("translation");
   const [selectedLang, setSelectedLang] = useState(i18n.language);
 
   const languages = [
