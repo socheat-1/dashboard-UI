@@ -23,11 +23,10 @@
       "placeholder": "Enter password"
     }
   ],
-  
   "profile": [
     {
       "name": "name",
-      "label": "name_label",
+      "label": "name",
       "change_state": false,
       "info": false,
       "disabled": false,
@@ -38,58 +37,58 @@
     },
     {
       "name": "username",
-      "label": "Username",
+      "label": "username",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter user name"
+      "placeholder": "name_placeholder"
     },
     {
       "name": "email",
-      "label": "Email",
+      "label": "email",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter email"
+      "placeholder": "email_placeholder"
     },
     {
       "name": "phone",
-      "label": "Phone",
+      "label": "phone",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter phone"
+      "placeholder": "phone_placeholder"
     },
     {
       "name": "location",
-      "label": "Location",
+      "label": "location",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter location"
+      "placeholder": "location_placeholder"
     },
     {
       "name": "gender",
-      "label": "Gender",
+      "label": "gender",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter gender"
+      "placeholder": "gender_placeholder"
     },
     {
       "name": "description",
@@ -104,131 +103,131 @@
     }
   ],
 
-  "income": [
+  "createIncome": [
     {
       "name": "amount",
-      "label": "Amount $",
+      "label": "amount",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter Amount",
+      "placeholder": "amount_placeholder",
       "pattern": "^[0-9 $៛]{0,20}$"
     },
     {
       "name": "description",
-      "label": "Description",
+      "label": "description",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter Des",
+      "placeholder": "des_placeholder",
       "pattern":"^[A-Za-z0-9 #$%&@?*_]{0,40}$"
     },
     {
       "name": "in_day",
-      "label": "In days",
+      "label": "in_day",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "days",
-      "placeholder": "Select Day"
+      "placeholder": "day_placeholder"
     },
     {
       "name": "in_month",
-      "label": "In months",
+      "label": "in_month",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "months",
-      "placeholder": "Select month"
+      "placeholder": "month_placeholder"
     },
     {
       "name": "in_year",
-      "label": "In years",
+      "label": "in_year",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "years",
-      "placeholder": "Select years"
+      "placeholder": "year_placeholder"
     }
   ],
   "createUser": [
     {
       "name": "name",
-      "label": "Name",
+      "label": "name",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter name"
+      "placeholder": "name_placeholder"
     },
     {
       "name": "username",
-      "label": "User Name",
+      "label": "username",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter user name"
+      "placeholder": "name_placeholder"
     },
     {
       "name": "email",
-      "label": "Email",
+      "label": "email",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter email"
+      "placeholder": "email_placeholder"
     },
     {
       "name": "phone",
-      "label": "Phone",
+      "label": "phone",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter phone"
+      "placeholder": "phone_placeholder"
     },
     {
       "name": "location",
-      "label": "Location",
+      "label": "location",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter location"
+      "placeholder": "location_placeholder"
     },
     {
       "name": "gender",
-      "label": "Gender",
+      "label": "gender",
       "change_state": false,
       "info": false,
       "disabled": false,
       "required": true,
       "value": "",
       "type": "input",
-      "placeholder": "Enter gender"
+      "placeholder": "gender_placeholder"
     },
     {
       "name": "description",
@@ -240,6 +239,28 @@
       "value": "",
       "type": "textarea",
       "placeholder": "Enter bio"
+    },
+    {
+      "name": "password",
+      "label": "password",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "password",
+      "placeholder": "password_placeholder"
+    },
+    {
+      "name": "confirmpassword",
+      "label": "confirmpassword",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "confirmpassword",
+      "placeholder": "confirmpassword_placeholder"
     }
   ]
 }

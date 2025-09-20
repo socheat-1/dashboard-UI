@@ -20,11 +20,13 @@ type IncomeStore = {
   removeIncome: (id: number) => void;
 };
 
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
+
 export const useIncomeStore = create<IncomeStore>((set, get) => ({
   incomeData: [],
   fetchIncome: async () => {
     try {
-      const res = await fetch("http://localhost:3001/finance/income/", {
+      const res = await fetch(`${API_URL}/finance/income/`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         cache: "no-store",
@@ -44,15 +46,14 @@ export const useIncomeStore = create<IncomeStore>((set, get) => ({
 
   cIncome: async (newIncome: any) => {
     try {
-      const res = await fetch("http://localhost:3001/finance/income/", {
+      const res = await fetch(`${API_URL}/finance/income/`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(newIncome),
       });
       if (!res.ok) throw new Error("Failed to create income");
       const resJson = await res.json();
-
-      // Update local store
+      
       set({ incomeData: [...get().incomeData, resJson.data] });
       
     } catch (err) {
@@ -63,7 +64,7 @@ export const useIncomeStore = create<IncomeStore>((set, get) => ({
   updateIncome: async (income: any) => {
     try {
       const res = await fetch(
-        `http://localhost:3001/finance/income/${income.id}`,
+        `${API_URL}/finance/income/${income.id}`,
         {
           method: "PUT",
           headers: { "Content-Type": "application/json" },

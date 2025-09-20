@@ -8,6 +8,7 @@ import formFields from "@/public/form.json";
 import Cookies from "js-cookie";
 import { useUserStore } from '@/store/userStore';
 import { useTranslation } from 'react-i18next';
+import NavHeaderVII from '@/share/header_route/nav_headerVII';
 
 export default function ProfileUser() {
     const { t } = useTranslation("translation");
@@ -17,6 +18,7 @@ export default function ProfileUser() {
     fields.forEach((form: { name: string; value?: string }) => {
         initialState[form.name] = form.value || "";
     });
+
     const [userId, setUserId] = useState<string | null>(null);
     const [formData, setFormData] = useState<Record<string, string>>(initialState);
     useEffect(() => {
@@ -85,7 +87,7 @@ export default function ProfileUser() {
 
     return (
         <div>
-            <NavHeader title={t('profile')} home={t('dashboard')} route={t('user')} label={t('profile')} href="/user/profile" />
+            <NavHeaderVII title='profile' home='user' label='profile' href="/user/profile" />
             <div className="mt-4">
                 <div className="md:flex gap-4 lg:space-y-0 space-y-2">
                     {/* Profile Image Section */}
@@ -101,7 +103,6 @@ export default function ProfileUser() {
                             <div className='mt-5'>
                                 <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-300 mb-2">{user?.name}</h2>
                                 <h2 className="text-lg font-normal text-gray-700 dark:text-gray-300 mb-2">{user?.location}</h2>
-                                <p className="text-gray-600 dark:text-gray-300">Update your information</p>
                             </div>
                         </div>
                     </div>
@@ -113,8 +114,9 @@ export default function ProfileUser() {
                                 {fields.map((form, index) =>
                                     form.type === "input" ? (
                                         <div key={`${form.name}-${index}`}>
-                                            <Label htmlFor={form.name}>{t(form.label)}</Label>
+                                            <Label  htmlFor={form.name}>{t(form.label)}</Label>
                                             <Input
+                                                className='mt-2'
                                                 type="text"
                                                 id={form.name}
                                                 placeholder={t(form.placeholder || form.label)}
@@ -133,7 +135,7 @@ export default function ProfileUser() {
                                     type="submit"
                                     className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
                                 >
-                                    Save Changes
+                                   {t('save')}
                                 </button>
                             </div>
                         </form>

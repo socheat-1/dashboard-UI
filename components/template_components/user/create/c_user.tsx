@@ -7,12 +7,17 @@ import formFields from "@/public/form.json";
 import Title from "@/share/header_route/title";
 import { IoClose } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
-import { t } from "i18next";
+import { useTranslation } from "react-i18next";
+import { HiEye } from "react-icons/hi";
+import { PiEyeClosedBold } from "react-icons/pi";
 interface CreateUserModalProps {
   isOpen: boolean;
   onClose: () => void;
 }
 export function CreateUser({ isOpen, onClose }: CreateUserModalProps) {
+  const { t } = useTranslation("translation");
+  const [showPassword , setShowPassword] = useState(false);
+  const [confirmPassword, setConfirmPassword] =  useState(false)
   const fields = formFields.createUser;
   const initialState: Record<string, string> = {};
   fields.forEach((form: { name: string; value?: string }) => {
@@ -59,7 +64,7 @@ export function CreateUser({ isOpen, onClose }: CreateUserModalProps) {
             >
               <form onSubmit={handleSubmit} className="bg-white w-[700px] p-4 rounded-2xl" >
                 <div className="flex justify-between items-center">
-                  <Title title="Create User" />
+                  <Title title="create_user" />
                   <div onClick={onClose} className="bg-gray-100 p-1 rounded-full">
                     <IoClose className="text-[15px]" />
                   </div>
@@ -68,11 +73,12 @@ export function CreateUser({ isOpen, onClose }: CreateUserModalProps) {
                   {fields.map((form, index) =>
                     form.type === "input" ? (
                       <div key={`${form.name}-${index}`}>
-                        <Label htmlFor={form.name}>{form.label}</Label>
+                        <Label htmlFor={form.name}>{t(form.label)}</Label>
                         <Input
+                          className="mt-2"
                           type="text"
                           id={form.name}
-                          placeholder={form.placeholder || form.label}
+                          placeholder={t(form.placeholder || form.label)}
                           name={form.name}
                           value={t(formData[form.name] ?? "")}
                           required={form.required}
@@ -80,14 +86,58 @@ export function CreateUser({ isOpen, onClose }: CreateUserModalProps) {
                           onChange={handleChange}
                         />
                       </div>
-                    ) : null)}
+                    ) : form.type === 'password' ? (
+                      <div className=" relative">
+                        <Label htmlFor={`outlined-adornment-${form.name}-${index}`}>{t(form.name)}</Label>
+                        <div className="relative">
+                          <Input
+                            name={form.name}
+                            type={showPassword ? "text" : "password"}
+                            value={formData[form.name]}
+                            onChange={handleChange}
+                            id="password"
+                            placeholder={form.placeholder || form.label}
+                            className="pr-10 mt-2"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setShowPassword(!showPassword)}
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                          >
+                            {showPassword ? <HiEye size={20} /> : <PiEyeClosedBold size={20} />}
+                          </button>
+                        </div>
+                      </div>
+                    ) : form.type === 'confirmpassword' ? (
+                      <div className=" relative">
+                        <Label htmlFor={`outlined-adornment-${form.name}-${index}`}>{t(form.name)}</Label>
+                        <div className="relative">
+                          <Input
+                            name={form.name}
+                            type={showPassword ? "text" : "password"}
+                            value={formData[form.name]}
+                            onChange={handleChange}
+                            id="password"
+                            placeholder={form.placeholder || form.label}
+                            className="pr-10 mt-2"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => setConfirmPassword(!confirmPassword)}
+                            className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200"
+                          >
+                            {showPassword ? <HiEye size={20} /> : <PiEyeClosedBold size={20} />}
+                          </button>
+                        </div>
+                      </div>
+                    ) : null) }
                 </div>
                 <div className="flex justify-end mt-5">
                   <button
                     type="submit"
                     className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
                   >
-                    Save Changes
+                    {t('save')}
                   </button>
                 </div>
               </form>

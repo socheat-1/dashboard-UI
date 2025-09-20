@@ -9,11 +9,11 @@ import {
     TableHeader,
     TableRow,
 } from "@/components/ui/table";
-import NavHeader from "@/share/header_route/nav_header";
 import { FiPlus } from "react-icons/fi";
 import { CreateUser } from "../create/c_user";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/userStore";
+import NavHeaderVII from "@/share/header_route/nav_headerVII";
 type User = {
     id: number;
     name: string;
@@ -51,23 +51,22 @@ export default function ListingPage() {
 
     const cols = [
         { id: 1, name: "" },
-        { id: 2, name: "Image" },
-        { id: 3, name: "Name" },
-        { id: 4, name: "Usename" },
-        { id: 5, name: "Email" },
-        { id: 6, name: "Phone" },
-        { id: 7, name: "Location" },
-        { id: 8, name: "Gender" },
+        { id: 2, name: "image" },
+        { id: 3, name: "name" },
+        { id: 4, name: "username" },
+        { id: 5, name: "email" },
+        { id: 6, name: "phone" },
+        { id: 7, name: "location" },
+        { id: 8, name: "gender" },
     ];
 
     return (
         <>
             <div className="flex justify-between items-center">
-                <NavHeader
-                    title={t('listing_users')}
-                    home={t('dashboard')}
-                    route={t('user')}
-                    label={t('listing_users')}
+                <NavHeaderVII
+                    title='listing_users'
+                    home='user'
+                    label='listing_users'
                     href="/user/listing_user"
                 />
                 <div onClick={() => setIsOpen(true)} className="bg-blue-500 hover:bg-blue-600 p-2 rounded-full">
@@ -80,7 +79,7 @@ export default function ListingPage() {
 
                         <TableRow >
                             {cols.map((col) => (
-                                <TableHead key={col.id}>{col.name}</TableHead>
+                                <TableHead key={col.id}>{t(col.name)}</TableHead>
                             ))}
                         </TableRow>
 

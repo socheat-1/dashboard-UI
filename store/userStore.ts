@@ -10,15 +10,17 @@ type User = {
 };
 
 type UserStore = {
-  user: User | null;
+  user: User | any;
   fetchUser: (userId: string) => Promise<void>;
 };
+const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
 
 export const useUserStore = create<UserStore>((set) => ({
+  
   user: null,
   fetchUser: async (userId: string) => {
     try {
-      const res = await fetch(`http://localhost:3001/users/${userId}`, {
+      const res = await fetch(`${API_URL}/users/${userId}`, {
         method: "GET",
         headers: { "Content-Type": "application/json" },
         cache: "no-store",

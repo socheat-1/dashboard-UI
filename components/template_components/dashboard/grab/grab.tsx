@@ -492,9 +492,9 @@ export default function RevenueChart() {
     return (
         <>
          <NavHeaderVII
-                    title={t('dashboard')}
-                    home={t('overview')}
-                    label={t('dashboard')}
+                    title='dashboard'
+                    home='overview'
+                    label='dashboard'
                     href="/setting/fontSetting"
                   />
           

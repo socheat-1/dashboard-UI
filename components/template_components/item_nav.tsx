@@ -124,7 +124,7 @@ export default function ItemNav({ sidebarOpen }: ItemNavProps) {
                         className={`flex items-center justify-between w-full rounded-sm
                           ${sidebarOpen ? "py-3 px-4" : "justify-center px-3 py-3"} 
                           ${isActive
-                            ? "bg-[#ecf3ff] dark:bg-[#18315c] border-l-4 border-[#465FFF] dark:border-gray-200 font-medium text-[#465FFF] dark:text-white shadow-sm"
+                            ? "bg-[#ecf3ff] dark:bg-[#18315c]  border-[#465FFF] dark:border-gray-200 font-medium text-[#465FFF] dark:text-white shadow-sm"
                             : "hover:bg-[#ecf3ff] dark:hover:bg-gray-700 text-[#344054] dark:text-white "
                           }`}
                         title={!sidebarOpen ? item.label : undefined}
@@ -229,7 +229,7 @@ export default function ItemNav({ sidebarOpen }: ItemNavProps) {
                         }}
                         className="overflow-hidden"
                       >
-                        <div className="ml-3 pl-3 border-l-2 border-gray-200 dark:border-gray-600 space-y-1 py-2 mt-1">
+                        <div className="ml-3 pl-3 border-l-2 border-gray-200 dark:border-gray-600 space-y-1  mt-1">
                           {item.subItems!.map((subItem, subIndex) => {
                             const isSubItemActive =
                               pathname === subItem.href ||

@@ -88,9 +88,9 @@ export default function Income() {
 
       <div className="flex justify-between items-center mb-3">
         <NavHeaderVII
-          title={t('income_table')}
-          home={t('overview')}
-          label={t('income')}
+          title='income_table'
+          home='overview'
+          label='income'
           href="/overview/income"
         />
         <div onClick={() => setIsCreateOpen(true)} className="bg-blue-500 hover:bg-blue-600 p-2 rounded-full">

@@ -1,7 +1,7 @@
 'use client';
 
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
-import NavHeader from '@/share/header_route/nav_header';
+import NavHeaderVII from '@/share/header_route/nav_headerVII';
 import { t } from 'i18next';
 import React, { useState, useEffect } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
@@ -88,11 +88,10 @@ export default function Settings() {
         position="bottom-left"
         reverseOrder={false}
       />
-      <NavHeader
-        title={t('font_family')}
-        home={t('dashboard')}
-        route={t('settings')}
-        label={t('font_family')}
+      <NavHeaderVII
+        title='font_family'
+        home='settings'
+        label='font_family'
         href="/setting/fontSetting"
       />
 

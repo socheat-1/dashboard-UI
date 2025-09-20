@@ -11,6 +11,7 @@ import toast from "react-hot-toast";
 import { useIncomeStore } from "@/store/incomeStore";
 import GlobalLoader from "@/app/loading";
 import { AnimatePresence, motion } from "framer-motion";
+import { useTranslation } from "react-i18next";
 
 interface CreateIncomeProps {
     isOpen: boolean;
@@ -18,8 +19,8 @@ interface CreateIncomeProps {
 }
 
 export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
-
-    const fields = formFields.income;
+    const { t } = useTranslation("translation");
+    const fields = formFields.createIncome;
     const initialState: Record<string, string> = {};
     fields.forEach((form: { name: string; value?: string }) => {
         initialState[form.name] = form.value || "";
@@ -30,7 +31,7 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
     const [formData, setFormData] = useState<Record<string, string>>(initialState);
     const [isLoading, setIsLoading] = useState(false);
 
-    const handleChange = ( e: React.ChangeEvent<HTMLInputElement>,pattern?: string
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>, pattern?: string
     ) => {
         const { name, value } = e.target;
         if (pattern) {
@@ -43,6 +44,7 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
     const handleSelectChange = (name: string, value: string) => {
         setFormData({ ...formData, [name]: value });
     };
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -72,7 +74,7 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
 
     if (!isOpen) return null;
 
-        useEffect(() => {
+    useEffect(() => {
         if (isOpen) {
             document.body.style.overflow = "hidden";
         } else {
@@ -98,12 +100,10 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                         exit={{ scale: 0.9 }}
                         transition={{ duration: 0.2 }}
                     >
-
-
                         <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-700 w-[700px] p-4 rounded-2xl"
                         >
                             <div className="flex justify-between items-center mb-4">
-                                <Title title="Create Income" />
+                                <Title title="create_income" />
                                 <div onClick={onClose} className="bg-gray-100 p-1 rounded-full cursor-pointer">
                                     <IoClose className="text-[15px]" />
                                 </div>
@@ -113,11 +113,12 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                                 {fields.map((form, index) =>
                                     form.type === "input" ? (
                                         <div key={`${form.name}-${index}`}>
-                                            <Label htmlFor={form.name}>{form.label}</Label>
+                                            <Label htmlFor={form.name}>{t(form.label)}</Label>
                                             <Input
+                                                className="mt-2"
                                                 type="text"
                                                 id={form.name}
-                                                placeholder={form.placeholder || form.label}
+                                                placeholder={t(form.placeholder || form.label)}
                                                 name={form.name}
                                                 value={formData[form.name] ?? ""}
                                                 required={form.required}
@@ -127,17 +128,19 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                                         </div>
                                     ) : form.type === "days" ? (
                                         <div key={`${form.name}-${index}`}>
-                                            <Label htmlFor={form.name}>{form.label}</Label>
+                                            <Label htmlFor={form.name}>{t(form.label)}</Label>
                                             <Select
+
                                                 value={formData[form.name] ?? ""}
                                                 onValueChange={(value) => handleSelectChange(form.name, value)}
+
                                             >
-                                                <SelectTrigger className="w-full">
-                                                    <SelectValue placeholder={form.placeholder} />
+                                                <SelectTrigger className="w-full mt-2">
+                                                    <SelectValue placeholder={t(form.placeholder)} />
                                                 </SelectTrigger>
-                                                <SelectContent className="z-[1200]">
+                                                <SelectContent className="z-[1200] ">
                                                     <SelectGroup>
-                                                        <SelectLabel>Day</SelectLabel>
+                                                        <SelectLabel>{t('day')}</SelectLabel>
                                                         {days.map((day) => (
                                                             <SelectItem key={day.value} value={day.value}>
                                                                 {day.label}
@@ -149,17 +152,17 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                                         </div>
                                     ) : form.type === "months" ? (
                                         <div key={`${form.name}-${index}`}>
-                                            <Label htmlFor={form.name}>{form.label}</Label>
+                                            <Label htmlFor={form.name}>{t(form.label)}</Label>
                                             <Select
                                                 value={formData[form.name] ?? ""}
                                                 onValueChange={(value) => handleSelectChange(form.name, value)}
                                             >
-                                                <SelectTrigger className="w-full">
-                                                    <SelectValue placeholder={form.placeholder} />
+                                                <SelectTrigger className="w-full mt-2">
+                                                    <SelectValue placeholder={t(form.placeholder)} />
                                                 </SelectTrigger>
                                                 <SelectContent className="z-[1200]">
                                                     <SelectGroup>
-                                                        <SelectLabel>Months</SelectLabel>
+                                                        <SelectLabel>{t('month')}</SelectLabel>
                                                         {months.map((month) => (
                                                             <SelectItem key={month.value} value={month.value}>
                                                                 {month.label}
@@ -171,17 +174,17 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                                         </div>
                                     ) : form.type === "years" ? (
                                         <div key={`${form.name}-${index}`}>
-                                            <Label htmlFor={form.name}>{form.label}</Label>
+                                            <Label htmlFor={form.name}>{t(form.label)}</Label>
                                             <Select
                                                 value={formData[form.name] ?? ""}
                                                 onValueChange={(value) => handleSelectChange(form.name, value)}
                                             >
-                                                <SelectTrigger className="w-full">
-                                                    <SelectValue placeholder={form.placeholder} />
+                                                <SelectTrigger className="w-full mt-2">
+                                                    <SelectValue placeholder={t(form.placeholder)} />
                                                 </SelectTrigger>
                                                 <SelectContent className="z-[1200]">
                                                     <SelectGroup>
-                                                        <SelectLabel>Years</SelectLabel>
+                                                        <SelectLabel>{t('year')}</SelectLabel>
                                                         {years.map((year) => (
                                                             <SelectItem key={year.value} value={year.value}>
                                                                 {year.label}
@@ -191,7 +194,7 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                                                 </SelectContent>
                                             </Select>
                                         </div>
-                                    )  : null
+                                    ) : null
                                 )}
                             </div>
                             <div className="flex justify-end mt-5">
@@ -199,7 +202,7 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                                     type="submit"
                                     className="px-6 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition"
                                 >
-                                    Save
+                                    {t('save')}
                                 </button>
                             </div>
                         </form>

@@ -37,9 +37,9 @@ export default function Expense() {
         <div className="">
            <div className="flex justify-between items-center mb-3">
                    <NavHeaderVII
-                     title={t('expense_table')}
-                     home={t('overview')}
-                     label={t('expense')}
+                     title='expense_table'
+                     home='overview'
+                     label='expense'
                      href="/overview/expense"
                    />
                    {/* <div onClick={() => setIsCreateOpen(true)} className="bg-blue-500 hover:bg-blue-600 p-2 rounded-full">
