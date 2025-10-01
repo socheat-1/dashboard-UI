@@ -13,7 +13,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import Image from "next/image";
-import Cambodia from "@/public/img/flag/cambodia.png"; 
+import cambodia from "@/public/img/flag/cambodia.png"; 
 import english from "@/public/img/flag/english.png"; 
 
 export default function Translate() {
@@ -22,7 +22,7 @@ export default function Translate() {
 
   const languages = [
     { code: "en", label: "English", img: english },
-    { code: "km", label: "ភាសាខ្មែរ", img: Cambodia },
+    { code: "km", label: "ភាសាខ្មែរ", img: cambodia },
   ];
 
   const changeLanguage = (value: string) => {

@@ -29,6 +29,7 @@
   "gender_placeholder": "Enter gender",
   "create_user":"Create User",
   "create_income":"Create Income",
+  "create_expense":"Create expense",
   "amount_placeholder":"Enter Amount",
   "save": "Save",
   "des_placeholder":"Enter description",
@@ -42,5 +43,8 @@
   "confirmpassword": "Confirm password",
   "password_placeholder":"Enter password",
   "confirmpassword_placeholder":"Enter Confirm password",
-  "image": "Image"
+  "image": "Image",
+  "click_to_uploade_image":"Click to uploade image",
+  "update_income": "Update income",
+  "update": "Update"
 }

@@ -10,10 +10,13 @@ import {
     TableRow,
 } from "@/components/ui/table";
 import { FiPlus } from "react-icons/fi";
-import { CreateUser } from "../create/c_user";
+import { CreateUser } from "../c-user/create-user";
 import { useTranslation } from "react-i18next";
 import { useUserStore } from "@/store/userStore";
 import NavHeaderVII from "@/share/header_route/nav_headerVII";
+import { CiEdit } from "react-icons/ci";
+import { TbTrashX } from "react-icons/tb";
+import { Toaster } from "react-hot-toast";
 type User = {
     id: number;
     name: string;
@@ -58,10 +61,15 @@ export default function ListingPage() {
         { id: 6, name: "phone" },
         { id: 7, name: "location" },
         { id: 8, name: "gender" },
+        { id: 9, name: "action" },
     ];
 
     return (
         <>
+          <Toaster
+        position="bottom-left"
+        reverseOrder={false}
+      />
             <div className="flex justify-between items-center">
                 <NavHeaderVII
                     title='listing_users'
@@ -101,6 +109,20 @@ export default function ListingPage() {
                                 <TableCell>{user.phone}</TableCell>
                                 <TableCell>{user.location}</TableCell>
                                 <TableCell>{user.gender}</TableCell>
+                                <TableCell className="py-3 px-4 dark:border-gray-700 flex gap-2 justify-center">
+                                    <button
+                                        //   onClick={() => handleEdit(income)}
+                                        className="bg-transparent dark:border-gray-700 dark:text-white border text-black hover:text-white px-3 py-1 rounded hover:bg-blue-600"
+                                    >
+                                        <CiEdit />
+                                    </button>
+                                    <button
+                                        //   onClick={() => handleDeleteClick(income.id)}
+                                        className="bg-transparent dark:border-gray-700 dark:text-white border text-black hover:text-white px-3 py-1 rounded hover:bg-red-600"
+                                    >
+                                        <TbTrashX />
+                                    </button>
+                                </TableCell>
                             </TableRow>
                         ))}
                     </TableBody>

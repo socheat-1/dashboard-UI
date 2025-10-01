@@ -162,6 +162,184 @@
       "placeholder": "year_placeholder"
     }
   ],
+  "updateIncome": [
+    {
+      "name": "amount",
+      "label": "amount",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "amount_placeholder",
+      "pattern": "^[0-9 $៛]{0,20}$"
+    },
+    {
+      "name": "description",
+      "label": "description",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "des_placeholder",
+      "pattern":"^[A-Za-z0-9 #$%&@?*_]{0,40}$"
+    },
+    {
+      "name": "in_day",
+      "label": "in_day",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "days",
+      "placeholder": "day_placeholder"
+    },
+    {
+      "name": "in_month",
+      "label": "in_month",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "months",
+      "placeholder": "month_placeholder"
+    },
+    {
+      "name": "in_year",
+      "label": "in_year",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "years",
+      "placeholder": "year_placeholder"
+    }
+  ],
+  "createExpense": [
+    {
+      "name": "amount",
+      "label": "amount",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "amount_placeholder",
+      "pattern": "^[0-9 $៛]{0,20}$"
+    },
+    {
+      "name": "description",
+      "label": "description",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "des_placeholder",
+      "pattern":"^[A-Za-z0-9 #$%&@?*_]{0,40}$"
+    },
+    {
+      "name": "in_day",
+      "label": "in_day",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "days",
+      "placeholder": "day_placeholder"
+    },
+    {
+      "name": "in_month",
+      "label": "in_month",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "months",
+      "placeholder": "month_placeholder"
+    },
+    {
+      "name": "in_year",
+      "label": "in_year",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "years",
+      "placeholder": "year_placeholder"
+    }
+  ],
+  "updateExpense": [
+    {
+      "name": "amount",
+      "label": "amount",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "amount_placeholder",
+      "pattern": "^[0-9 $៛]{0,20}$"
+    },
+        {
+      "name": "description",
+      "label": "description",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "input",
+      "placeholder": "des_placeholder",
+      "pattern":"^[A-Za-z0-9 #$%&@?*_]{0,40}$"
+    },
+    {
+      "name": "in_day",
+      "label": "in_day",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "days",
+      "placeholder": "day_placeholder"
+    },
+    {
+      "name": "in_month",
+      "label": "in_month",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "months",
+      "placeholder": "month_placeholder"
+    },
+    {
+      "name": "in_year",
+      "label": "in_year",
+      "change_state": false,
+      "info": false,
+      "disabled": false,
+      "required": true,
+      "value": "",
+      "type": "years",
+      "placeholder": "year_placeholder"
+    }
+
+  ],
   "createUser": [
     {
       "name": "name",

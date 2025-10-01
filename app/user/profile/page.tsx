@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import ProfileUser from "@/components/template_components/user/profile_user/profile";
+import ProfileUser from "@/components/template_components/user/p-user/profile-user";
 
 export default function Profile(){
     return(

@@ -13,11 +13,11 @@ export type Income = {
 
 
 type IncomeStore = {
-  updateIncome: any;
-  cIncome: any;
+  update_Income: any;
+  create_Income: any;
   incomeData: Income[];
   fetchIncome: () => Promise<void>;
-  removeIncome: (id: number) => void;
+  remove_Income: (id: number) => void;
 };
 
 const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3001";
@@ -39,12 +39,12 @@ export const useIncomeStore = create<IncomeStore>((set, get) => ({
     }
   },
 
-  removeIncome: (id: number) => {
+  remove_Income: (id: number) => {
     set({ incomeData: get().incomeData.filter((inc) => inc.id !== id) });
   },
 
 
-  cIncome: async (newIncome: any) => {
+  create_Income: async (newIncome: any) => {
     try {
       const res = await fetch(`${API_URL}/finance/income/`, {
         method: "POST",
@@ -61,7 +61,7 @@ export const useIncomeStore = create<IncomeStore>((set, get) => ({
     }
   },
 
-  updateIncome: async (income: any) => {
+  update_Income: async (income: any) => {
     try {
       const res = await fetch(
         `${API_URL}/finance/income/${income.id}`,

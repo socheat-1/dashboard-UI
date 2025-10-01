@@ -16,7 +16,7 @@ import NavHeaderVII from "@/share/header_route/nav_headerVII";
 export default function Income() {
   const { t } = useTranslation("translation");
   const [isCreateOpen, setIsCreateOpen] = useState(false);
-  const { incomeData, fetchIncome, removeIncome } = useIncomeStore();
+  const { incomeData, fetchIncome, remove_Income } = useIncomeStore();
   const [currentPage, setCurrentPage] = useState(1);
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
   const [isUpdateModalOpen, setIsUpdateModalOpen] = useState(false);
@@ -61,7 +61,7 @@ export default function Income() {
         headers: { "Content-Type": "application/json" },
       });
       if (!res.ok) throw new Error("Failed to delete income");
-      removeIncome(deleteId);
+      remove_Income(deleteId);
       toast.success("Income deleted successfully");
     } catch (error) {
       console.error(error);

@@ -29,6 +29,7 @@
   "gender_placeholder": "បញ្ចូលភេទ",
   "create_user":"បង្កើតអ្នកប្រើប្រាស់",
   "create_income":"បង្កើតប្រាក់ចំណូល",
+  "create_expense":"បង្កើតប្រាក់ចំណាយ",
   "amount_placeholder": "បញ្ចូលចំនួនទឹកប្រាក់",
   "save": "រក្សាទុក",
   "des_placeholder":"បញ្ចូលបរិយាយ",
@@ -42,6 +43,9 @@
   "confirmpassword": "បញ្ជាក់ពាក្យសម្ងាត់",
   "password_placeholder":"ពាក្យសម្ងាត់",
   "confirmpassword_placeholder":"បញ្ជាក់ពាក្យសម្ងាត់",
-  "image": "រូបភាព"
+  "image": "រូបភាព",
+  "click_to_uploade_image":"ចុចដើម្បីបង្ហោះរូបភាព",
+  "update_income": "កែប្រែប្រាក់ចំណូល",
+  "update": "កែប្រែ"
   
 }

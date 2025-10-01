@@ -2,7 +2,6 @@
 
 import { useRouter } from "next/navigation";
 import Cookies from "js-cookie";
-import { BiLogOut } from "react-icons/bi";
 
 export default function Logout() {
   const router = useRouter();

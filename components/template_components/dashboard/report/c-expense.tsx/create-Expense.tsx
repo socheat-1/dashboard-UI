@@ -8,25 +8,25 @@ import formFields from "@/public/form.json";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useDatetimeStore } from "@/store/datetimeStore";
 import toast from "react-hot-toast";
-import { useIncomeStore } from "@/store/incomeStore";
 import GlobalLoader from "@/app/loading";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useExpenseStore } from "@/store/expenseStore";
 
-interface CreateIncomeProps {
+interface CreateExpenseProps {
     isOpen: boolean;
     onClose: () => void;
 }
-export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
+export default function CreateExpense({ isOpen, onClose }: CreateExpenseProps) {
     const { t } = useTranslation("translation");
-    const fields = formFields.createIncome;
+    const fields = formFields.createExpense;
     const initialState: Record<string, string> = {};
     fields.forEach((form: { name: string; value?: string }) => {
         initialState[form.name] = form.value || "";
     });
 
     const { days, months, years, fetchDatetime } = useDatetimeStore();
-    const { create_Income } = useIncomeStore();
+    const { create_Expense } = useExpenseStore();
     const [formData, setFormData] = useState<Record<string, string>>(initialState);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -49,7 +49,7 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
         e.preventDefault();
         setIsLoading(true);
         try {
-            await create_Income({
+            await create_Expense({
                 amount: formData.amount,
                 description: formData.description,
                 in_day: formData.in_day,
@@ -57,10 +57,10 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                 in_year: formData.in_year
             });
 
-            toast.success("Income created successfully!");
+            toast.success("Expense created successfully!");
             onClose();
         } catch (err) {
-            toast.error("Failed to create income");
+            toast.error("Failed to create expense");
             console.error(err);
         } finally {
             setIsLoading(false);
@@ -102,12 +102,17 @@ export default function CreateIncome({ isOpen, onClose }: CreateIncomeProps) {
                         <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-700 w-[700px] p-4 rounded-2xl"
                         >
                             <div className="flex justify-between items-center mb-4">
-                                <Title title="create_income" />
+                                <Title title="create_expense" />
                                 <div onClick={onClose} className="bg-gray-100 p-1 rounded-full cursor-pointer">
                                     <IoClose className="text-[15px]" />
                                 </div>
                             </div>
                             {isLoading && <GlobalLoader />}
+                            {/* {isLoading && (
+                                <div className="absolute inset-0 z-[1200] flex items-center justify-center bg-white/70 backdrop-blur-sm">
+                                    <GlobalLoader />
+                                </div>
+                            )} */}
                             <div className="grid md:grid-cols-2 gap-4">
                                 {fields.map((form, index) =>
                                     form.type === "input" ? (

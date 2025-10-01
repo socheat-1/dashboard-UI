@@ -8,27 +8,27 @@ import formFields from "@/public/form.json";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useDatetimeStore } from "@/store/datetimeStore";
 import toast from "react-hot-toast";
-import { useIncomeStore } from "@/store/incomeStore";
 import GlobalLoader from "@/app/loading";
 import { AnimatePresence, motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
+import { useExpenseStore } from "@/store/expenseStore";
 
-interface UpdateIncomeProps {
+interface UpdateExpenseProps {
     isModalOpen: boolean;
     onClose: () => void;
-    income: Record<string, string>;
+    expense: Record<string, string>;
 }
 
-export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateIncomeProps) {
+export default function UpdateExpense({ isModalOpen, onClose, expense }: UpdateExpenseProps) {
     const { t } = useTranslation("translation");
-    const fields = formFields.updateIncome;
+    const fields = formFields.updateExpense;
     const initialState: Record<string, string> = {};
     fields.forEach((form: { name: string; value?: string }) => {
-        initialState[form.name] = income[form.name] || form.value || "";
+        initialState[form.name] = expense[form.name] || form.value || "";
     });
 
     const { days, months, years, fetchDatetime } = useDatetimeStore();
-    const { update_Income } = useIncomeStore();
+    const { update_Expense } = useExpenseStore();
     const [formData, setFormData] = useState<Record<string, string>>(initialState);
     const [isLoading, setIsLoading] = useState(false);
 
@@ -51,14 +51,14 @@ export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateInc
         try {
             const updateData = {
                 ...formData,
-                id: income.id
+                id: expense.id
             };
 
-            await update_Income(updateData);
-            toast.success("Income updated successfully!");
+            await update_Expense(updateData);
+            toast.success("Expense updated successfully!");
             onClose();
         } catch (err) {
-            toast.error("Failed to update income");
+            toast.error("Failed to update expense");
             console.error(err);
         } finally {
             setIsLoading(false);
@@ -72,10 +72,10 @@ export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateInc
     useEffect(() => {
         const newInitialState: Record<string, string> = {};
         fields.forEach((form: { name: string; value?: string }) => {
-            newInitialState[form.name] = income[form.name] || form.value || "";
+            newInitialState[form.name] = expense[form.name] || form.value || "";
         });
         setFormData(newInitialState);
-    }, [income, fields]);
+    }, [expense, fields]);
 
     if (!isModalOpen) return null;
 
@@ -107,7 +107,7 @@ export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateInc
                 >
                     <form onSubmit={handleSubmit} className="bg-white dark:bg-gray-700 w-[700px] p-4 rounded-2xl">
                         <div className="flex justify-between items-center mb-4">
-                            <Title title="update_income" />
+                            <Title title="update_expense" />
                             <div onClick={onClose} className="bg-gray-100 p-1 rounded-full cursor-pointer">
                                 <IoClose className="text-[15px]" />
                             </div>
@@ -214,6 +214,3 @@ export default function UpdateIncome({ isModalOpen, onClose, income }: UpdateInc
         </AnimatePresence>
     );
 }
-
-
-
